@@ -14,6 +14,8 @@
       system = "x86_64-linux";
       timezone = "Europe/London";
       locale = "en_GB.UTF-8";
+
+      hosts = import [ ./hosts.nix ];
     in
  
     {
