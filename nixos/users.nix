@@ -1,5 +1,5 @@
 {
-    olivando = {
+    olivando = {       
         isNormalUser = true;
 
         extraGroups = ["wheel" "networkmanager"];

@@ -30,9 +30,9 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
                 "${user.username}@${host.hostname}" = home-manager.lib.homeManagerConfiguration {
                     pkgs = nixpkgs.legacyPackages.${host.hostSettings.system};
 
-                    modules = [ ./users/${user.username}/${user.profile}/home.nix ];
+                    modules = [ ./users/home.nix ];
 
-                    extraSpecialArgs = { userSettings = userSettings.${user.username}; };
+                    extraSpecialArgs = { username = user.username; userSettings = userSettings.${user.username}; profile = user.profile; };
                 };
             }
         ) {} host.hostSettings.users;
