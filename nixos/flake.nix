@@ -22,7 +22,7 @@
       locale = "en_GB.UTF-8";
 
       hosts = import ./hosts.nix;
-      users = import ./users.nix;
+      userSettings = import ./users.nix;
 
       makeSystem =
         { hostname, hostSettings }:
@@ -36,6 +36,7 @@
               timezone
               locale
               hostSettings
+              userSettings
               ;
           };
 
