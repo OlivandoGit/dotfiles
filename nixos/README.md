@@ -17,7 +17,7 @@ Good luck \
 
 To build hosts: \
 ```sudo nixos-rebuild switch --flake .``` \
-In the root directory of this repo
+In the nixos directory of this repo
 
 ### Creating a new user
 1. Add the user into users.nix - [Read below for options](#Usersnix)
@@ -26,7 +26,7 @@ In the root directory of this repo
 
 To build users: \
 ```home-manasger switch --flake .``` \
-In the root directory of this repo
+In the nixos directory of this repo
 
 ## Hosts.nix
 Hosts.nix contains a list of attribute sets which each define a single host and its associated settings.
