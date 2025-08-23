@@ -1,11 +1,11 @@
 {
-  olivando = {
-    isNormalUser = true;
+    olivando = {
+        isNormalUser = true;
 
-    extraGroups = ["wheel" "networkmanager"];
+        extraGroups = ["wheel" "networkmanager"];
 
-    shell = "/bin/sh";
-    
-    uid = 1000;
-  };
+        shell = "/bin/sh";
+        
+        uid = 1000;
+    };
 }

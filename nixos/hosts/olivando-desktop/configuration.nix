@@ -1,16 +1,15 @@
-{ stateVersion, ... }:
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./system-packages.nix
+    imports = [
+        ./hardware-configuration.nix
+        ./system-packages.nix
 
-    ../modules
+        ../modules
 
-    ../modules/nvidia.nix
-    ../modules/hyprland.nix
-  ];
+        ../modules/nvidia.nix
+        ../modules/hyprland.nix
+    ];
 
-  networking.hostName = "olivando-desktop";
+    networking.hostName = "olivando-desktop";
 
-  system.stateVersion = "25.05"; # DO NOT CHANGE
+    system.stateVersion = "25.05"; # DO NOT CHANGE
 }

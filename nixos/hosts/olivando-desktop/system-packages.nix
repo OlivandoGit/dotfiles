@@ -1,14 +1,14 @@
 { pkgs, ... }:
 {
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-  ];
+    environment.systemPackages = with pkgs; [
+        vim
+        git
+    ];
 
-  programs.steam = {
-    enable = true;
-  };
+    programs.steam = {
+        enable = true;
+    };
 }

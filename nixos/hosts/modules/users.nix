@@ -1,48 +1,14 @@
-# { pkgs, userSettings, ... }:
-# {
-#   users = {
-#     defaultUserShell = pkgs.bash;
-
-#     users."olivando" = {
-#       isNormalUser = true;
-#       extraGroups = [
-#         "networkmanager"
-#         "wheel"
-#       ];
-#     };
-#   };
-# }
-
 { pkgs, hostSettings, userSettings, ... }:
+
 let
+    # Set the user attributes using the data from users.nix
     makeUser =  user: {
         "${user}" = userSettings.${user};
     };
 in
 {
+    # Create all users from hosts.nix
     users.users = builtins.foldl' (
         usr: user: usr // makeUser user
     ) {} hostSettings.users;
 } 
-
-
-
-
-
-
-
-
-
-
-#   # Build a network interface from the function arguments
-#   makeInterface = { interface, addresses }: {
-#     "${interface}" = {
-#       ipv4.addresses = addresses;
-#     };
-#   };
-
-#   makeNetworking = {
-#     # Build network interface options from provided list in hosts.nix
-#     interfaces = builtins.foldl' (
-#       intf: interface : intf // makeInterface interface
-#     ) {} hostSettings.networking.ipv4;

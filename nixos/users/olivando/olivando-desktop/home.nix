@@ -1,17 +1,16 @@
 { config, pkgs, ... }:
 {
+    imports = [
+        ../common
+        ./modules
+        ./packages.nix
+    ];
 
-  imports = [
-    ../common
-    ./modules
-    ./packages.nix
-  ];
+    home.username = "olivando";
+    home.homeDirectory = "/home/olivando";
 
-  home.username = "olivando";
-  home.homeDirectory = "/home/olivando";
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  home.stateVersion = "25.05";
+    home.stateVersion = "25.05";
 }

@@ -1,5 +1,5 @@
 {
-  imports = [
-    ./shells.nix
-  ];
+    imports = [
+        ./shells.nix
+    ];
 }
