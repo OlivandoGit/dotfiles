@@ -5,24 +5,16 @@ let
         ".." = "cd ..";
     };
 
-    initExtras = ''
-        # Start UWSM
-        if uwsm check may-start; then
-        exec uwsm start hyprland-uwsm.desktop
-        fi
-    '';
 in
     {
     programs = {
         bash = {
-        enable = true;
-        shellAliases = myAliases;
-        initExtra = initExtras;
+            enable = true;
+            shellAliases = myAliases;
         };
         zsh = {
-        enable = true;
-        shellAliases = myAliases;
-        initContent = initExtras;
+            enable = true;
+            shellAliases = myAliases;
         };
 };
 }

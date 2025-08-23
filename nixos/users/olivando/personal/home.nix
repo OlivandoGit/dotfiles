@@ -2,6 +2,7 @@
 {
     imports = [
         ../common
+        ../common/uwsm.nix
         ./modules
         ./packages.nix
     ];

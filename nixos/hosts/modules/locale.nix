@@ -1,20 +1,20 @@
-{ timezone, locale, ... }:
+{ hostSettings, ... }:
 {
-    time.timeZone = timezone;
+    time.timeZone = hostSettings.timezone;
 
-    console.keyMap = "uk";
+    console.keyMap = hostSettings.consoleKeymap;
 
-    i18n.defaultLocale = locale;
+    i18n.defaultLocale = hostSettings.locale;
 
     i18n.extraLocaleSettings = {
-        LC_ADDRESS = locale;
-        LC_IDENTIFICATION = locale;
-        LC_MEASUREMENT = locale;
-        LC_MONETARY = locale;
-        LC_NAME = locale;
-        LC_NUMERIC = locale;
-        LC_PAPER = locale;
-        LC_TELEPHONE = locale;
-        LC_TIME = locale;
+        LC_ADDRESS = hostSettings.locale;
+        LC_IDENTIFICATION = hostSettings.locale;
+        LC_MEASUREMENT = hostSettings.locale;
+        LC_MONETARY = hostSettings.locale;
+        LC_NAME = hostSettings.locale;
+        LC_NUMERIC = hostSettings.locale;
+        LC_PAPER = hostSettings.locale;
+        LC_TELEPHONE = hostSettings.locale;
+        LC_TIME = hostSettings.locale;
     };
 }

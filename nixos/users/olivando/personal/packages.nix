@@ -4,7 +4,6 @@
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
-        wget
         kitty
         (waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
@@ -16,16 +15,11 @@
         hyprlock
 
         discord
-        file
         youtube-music
         bitwarden
-        pulseaudioFull
-        tree
-        neofetch
         stow
         vscode
         nixfmt-rfc-style
-        bind
 
         # Fonts
         nerd-fonts.fira-code

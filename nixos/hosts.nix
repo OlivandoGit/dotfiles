@@ -1,9 +1,14 @@
 [
 {
     hostname = "olivando-desktop";
-
+    
     hostSettings = {
-        users = [ "olivando" ];
+        users = [ {username = "olivando"; profile = "personal";} ];
+
+        system = "x86_64-linux";
+        timezone = "Europe/London";
+        locale = "en_GB.UTF-8";
+        consoleKeymap = "uk";
 
         networking = {
             ipv4 = [

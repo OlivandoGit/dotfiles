@@ -9,6 +9,6 @@ in
 {
     # Create all users from hosts.nix
     users.users = builtins.foldl' (
-        usr: user: usr // makeUser user
+        usr: user: usr // makeUser user.username
     ) {} hostSettings.users;
 } 
