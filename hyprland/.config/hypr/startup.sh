@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-hyprlock &
+#hyprlock &
 
 hyprctl setcursor Nordzy-cursors 24
 

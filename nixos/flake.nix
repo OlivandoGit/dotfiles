@@ -8,33 +8,49 @@
 
   };
 
-  outputs = {self, nixpkgs, home-manager, ...}@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
 
     let
       system = "x86_64-linux";
       timezone = "Europe/London";
       locale = "en_GB.UTF-8";
 
-      hosts = import [ ./hosts.nix ];
-    in
- 
-    {
-      nixosConfigurations = {
-        "olivando-desktop" = nixpkgs.lib.nixosSystem {
+      hosts = import ./hosts.nix;
+      users = import ./users.nix;
+
+      makeSystem =
+        { hostname, hostSettings }:
+        nixpkgs.lib.nixosSystem {
+          system = system;
 
           specialArgs = {
-
-            inherit inputs;
-            inherit system;
-            inherit timezone;
-            inherit locale;
-
+            inherit
+              inputs
+              system
+              timezone
+              locale
+              hostSettings
+              ;
           };
 
-          modules = [ ./system/olivando-desktop/configuration.nix ];
+          modules = [ ./hosts/${hostname}/configuration.nix ];
 
         };
-      };
+    in
+    {
+      nixosConfigurations = nixpkgs.lib.foldl' (
+        configs: host:
+        configs
+        // {
+          "${host.hostname}" = makeSystem { inherit (host) hostname hostSettings; };
+        }
+      ) { } hosts;
 
       homeConfigurations = {
 
@@ -42,9 +58,9 @@
 
           pkgs = nixpkgs.legacyPackages.${system};
 
-          modules = [ ./home-manager/olivando/home.nix ];
+          modules = [ ./users/olivando/olivando-desktop/home.nix ];
 
+        };
       };
     };
-  };
 }

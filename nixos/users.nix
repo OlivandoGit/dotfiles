@@ -1,3 +1,6 @@
 [
-    { username = "olivando"; uid = 1000; }
-];
+  {
+    username = "olivando";
+    uid = 1000;
+  }
+]
