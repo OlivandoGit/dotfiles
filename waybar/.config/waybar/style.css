@@ -1,12 +1,12 @@
 @import "colours.css";
 
 @define-color main-bg-colour @base00;
-@define-color main-font-colour @base05;
-@define-color main-accent-colour @base0D;
+@define-color main-font-colour @base06;
+@define-color main-accent-colour @base09;
 
 
 * {
-    font-family: 'Fira Mono Nerd Font';
+    font-family: 'FiraMono Nerd Font';
     font-size: 13px;
     font-weight: 500;
     color: @main-font-colour;
@@ -93,5 +93,15 @@
 
 /* Change colour of text for all visible workspaces */
 #workspaces button.visible label {
+    color: @main-accent-colour;
+}
+
+#workspaces button.empty label {
+    color: @base03;
+}
+
+#custom-logo {
+    font-size: 18px;
+    padding-right: 15px;
     color: @main-accent-colour;
 }
