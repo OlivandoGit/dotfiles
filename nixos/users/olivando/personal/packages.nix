@@ -13,6 +13,7 @@
         hyprpaper
         rofi-wayland
         hyprlock
+        hyprshot
 
         discord
         youtube-music
@@ -20,8 +21,9 @@
         stow
         vscode
         nixfmt-rfc-style
-
+        
         # Fonts
+        nerd-fonts.symbols-only
         nerd-fonts.fira-code
         nerd-fonts.fira-mono
     ];

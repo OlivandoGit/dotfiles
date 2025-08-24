@@ -6,5 +6,5 @@
         fish.enable = true;
     };
 
-    users.defaultUserShell = pkgs.bashInteractive;
+    users.defaultUserShell = pkgs.bash;
 }

@@ -6,6 +6,6 @@
         
         uid = 1000;
 
-        shell = "/home/olivando/.nix-profile/bin/sh";
+        shell = "/home/olivando/.nix-profile/bin/bash";
     };
 }
