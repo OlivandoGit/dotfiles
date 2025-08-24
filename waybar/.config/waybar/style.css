@@ -1,0 +1,97 @@
+@import "colours.css";
+
+@define-color main-bg-colour @base00;
+@define-color main-font-colour @base05;
+@define-color main-accent-colour @base0D;
+
+
+* {
+    font-family: 'Fira Mono Nerd Font';
+    font-size: 13px;
+    font-weight: 500;
+    color: @main-font-colour;
+
+
+    min-height: 0;
+    padding: 0px;
+    min-width: 0;
+    border: none;
+
+    box-shadow: none;
+    text-shadow: none;
+
+}
+
+#waybar {
+    background: transparent;
+    margin: 0px;
+}
+
+/* Blank space to left of bar */
+.modules-left {
+    margin-left: 7px;
+}
+
+/* Blank space to right of bar */
+.modules-right {
+    margin-right: 7px;
+}
+
+/* Blank space above modules */
+.modules-left,
+.modules-center,
+.modules-right {
+    margin-top: 5px;
+}
+
+/* Set default background colour and padding */
+.modules-left *,
+.modules-center *,
+.modules-right * {
+    background-color: @main-bg-colour;
+    padding: 5px 10px;
+}
+
+/* Set left radius corners for each module */
+.modules-left *:first-child,
+.modules-center *:first-child,
+.modules-right *:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+/* Set right radius corners for each module */
+.modules-left *:last-child,
+.modules-center *:last-child,
+.modules-right *:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/* Remove padding from workspace objects - will be done later by the buttons */
+#workspaces {
+    padding: 0px;
+    margin-left: 7px;
+}
+
+#workspaces * {
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+}
+
+#workspaces button {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+}
+
+/* Remove hover changes */
+#workspaces button:hover {
+    background: none;
+}
+
+/* Change colour of text for all visible workspaces */
+#workspaces button.visible label {
+    color: @main-accent-colour;
+}
