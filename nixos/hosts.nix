@@ -29,6 +29,23 @@
                 "9.9.9.9"
             ];
         };
+
+        shares = {
+            nfs = [ 
+                {
+                    mnt = "/mnt/nas-storage";
+                    address = "truenas.home.olivando.me:/mnt/fast-storage/nas-storage";
+                }
+                {
+                    mnt = "/mnt/backups";
+                    address = "truenas.home.olivando.me:/mnt/fast-storage/backups";
+                }
+                {
+                    mnt = "/mnt/docker-volumes";
+                    address = "truenas.home.olivando.me:/mnt/fast-storage/docker_volumes";
+                }
+            ];
+        };
     };
 }
 ]
