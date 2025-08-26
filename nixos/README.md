@@ -45,8 +45,14 @@ Hosts.nix contains a list of attribute sets which each define a single host and 
     - ```defaultGateway``` Required if configuring static IP. Defines the default gateway address and the interface on which it can be reached 
     - ```dns``` A list of ip addresses for DNS servers. Optional extra when configuring with static IP
 
+- ```shares```
+    - ```nfs``` A list of attribute sets, each defining a single network share
+        - ```mnt``` The directory to mount the nfs share to
+        - ```address``` The address of the network share
+
 ## Users.nix
 Users.nix is used like a database to get user settings based on the username. The options in this file are the same as users.users.\<username\> on NisOS and is directly imported during system configuration. This way I can make sure that users have the same settings across all systems (espeically useful in the case of uid and nfs shares)
 
 ### TODO
 - [ ] Add dns settings for non-static IP configuration
+- [ ] Other network share types
