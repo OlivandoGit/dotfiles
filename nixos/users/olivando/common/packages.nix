@@ -11,5 +11,9 @@
         tree
         neofetch
         bind
+        fzf
+        thefuck
+        tldr
+        bat
     ];
 }

@@ -4,10 +4,9 @@
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
+        # Hyprland specific
         kitty
-        (waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-        }))
+        ( waybar.overrideAttrs (oldAttrs: { esonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; }))
         mako
         libnotify
         hyprpaper
@@ -15,13 +14,16 @@
         hyprlock
         hyprshot
 
+        # UI apps
         discord
         youtube-music
         bitwarden
         stow
         vscode
-        nixfmt-rfc-style
-        
+
+        # CLI
+        flavours
+
         # Fonts
         nerd-fonts.symbols-only
         nerd-fonts.fira-code

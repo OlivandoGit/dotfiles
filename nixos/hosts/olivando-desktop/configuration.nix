@@ -8,6 +8,8 @@
 
         ../modules/nvidia.nix
         ../modules/hyprland.nix
+
+        ../modules/restic.nix
     ] ++ (if (builtins.hasAttr "shares" hostSettings) then [ ../modules/shares.nix ] else []);
 
     networking.hostName = "olivando-desktop";
