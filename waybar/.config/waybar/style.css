@@ -91,13 +91,15 @@
     background: none;
 }
 
+
+/* Change colour of text for all empty workspaces */
+#workspaces button.empty label {
+    color: @base03;
+}
+
 /* Change colour of text for all visible workspaces */
 #workspaces button.visible label {
     color: @main-accent-colour;
-}
-
-#workspaces button.empty label {
-    color: @base03;
 }
 
 #custom-logo {
