@@ -15,5 +15,9 @@
         thefuck
         tldr
         bat
+        zip
+        unzip
+        vlc
+	trash-cli
     ];
 }

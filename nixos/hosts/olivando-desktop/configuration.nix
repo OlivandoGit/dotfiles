@@ -10,6 +10,8 @@
         ../modules/hyprland.nix
 
         ../modules/restic.nix
+
+        ../modules/printing.nix
     ] ++ (if (builtins.hasAttr "shares" hostSettings) then [ ../modules/shares.nix ] else []);
 
     networking.hostName = "olivando-desktop";
