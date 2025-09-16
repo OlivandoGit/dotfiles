@@ -12,6 +12,7 @@
         ../modules/restic.nix
 
         ../modules/printing.nix
+        ../modules/bluetooth.nix
     ] ++ (if (builtins.hasAttr "shares" hostSettings) then [ ../modules/shares.nix ] else []);
 
     networking.hostName = "olivando-desktop";
