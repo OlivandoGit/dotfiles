@@ -13,6 +13,7 @@
 
         ../modules/printing.nix
         ../modules/bluetooth.nix
+        ../modules/openvpn.nix
     ] ++ (if (builtins.hasAttr "shares" hostSettings) then [ ../modules/shares.nix ] else []);
 
     networking.hostName = "olivando-desktop";
