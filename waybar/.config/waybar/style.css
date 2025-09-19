@@ -107,3 +107,7 @@
     padding-right: 15px;
     color: @main-accent-colour;
 }
+
+#custom-vpn {
+    color: @base0E;
+}

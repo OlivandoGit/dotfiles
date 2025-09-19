@@ -16,6 +16,7 @@
         "cpu",
         "memory",
         "network",
+        "custom/vpn",
         "pulseaudio"
     ],
     "hyprland/workspaces": {
@@ -38,7 +39,7 @@
     "cpu": {
         "tooltip": false,
         "interval": 1,
-        "format": "  {load}%"
+        "format": " {load}%"
     },
     "memory": {
         "tooltip": false,
@@ -48,13 +49,19 @@
     "network": {
         "tooltip": false,
         "interface": "enp4s0",
-        "format-wifi": "󰤢 {ipaddr}/{cidr}",
+        "format-wifi": "󰤢  {ipaddr}/{cidr}",
         "format-ethernet": "󰈀 {ipaddr}/{cidr}",
         "format-disconnected": "{ifname}",
         "interval": 5
     },
+    "custom/vpn": {
+        "interval": 3,
+        "format": "{}",
+        "exec": "ip add show | grep -qF tun0 && echo VPN || echo '' ",
+        "max-length": "100"
+    },
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": {
             "default": [
@@ -63,6 +70,5 @@
                 " "
             ]
         },
-        "on-click": "pavucontrol"
     }
 }
