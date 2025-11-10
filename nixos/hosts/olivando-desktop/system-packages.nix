@@ -10,4 +10,7 @@
         enable = true;
         gamescopeSession.enable = true;
     };
+
+    virtualisation.docker.enable = true;
+
 }

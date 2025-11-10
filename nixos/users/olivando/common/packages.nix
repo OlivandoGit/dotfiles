@@ -18,6 +18,7 @@
         zip
         unzip
         vlc
-	trash-cli
+        trash-cli
+        htop
     ];
 }

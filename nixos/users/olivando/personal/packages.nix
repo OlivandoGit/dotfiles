@@ -20,9 +20,15 @@
         bitwarden
         stow
         vscode
+        qbittorrent
+        prismlauncher
 
         # CLI
         flavours
+        viu
+        mpv
+        terraform
+        ansible
 
         # Fonts
         nerd-fonts.symbols-only
