@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#$pid = pidof steam
+
+while $(kill $(pidof steam) 2>/dev/null); do
+	echo "steam running"
+	sleep 1
+done
+
+gamescope -w 5120 -h 1440 -W 5120 -H 1440 -r 144 --xwayland-count 1 --backend sdl --force-grab-cursor -- steam
