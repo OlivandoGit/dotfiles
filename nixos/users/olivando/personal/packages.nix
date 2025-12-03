@@ -22,6 +22,7 @@
         vscode
         qbittorrent
         prismlauncher
+	    itch
 
         # CLI
         flavours
@@ -29,6 +30,7 @@
         mpv
         terraform
         ansible
+        veracrypt
 
         # Fonts
         nerd-fonts.symbols-only

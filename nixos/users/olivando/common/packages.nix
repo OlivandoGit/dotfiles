@@ -17,6 +17,7 @@
         bat
         zip
         unzip
+	    unrar
         vlc
         trash-cli
         htop
