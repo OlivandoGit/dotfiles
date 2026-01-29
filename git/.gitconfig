@@ -1,6 +1,9 @@
 [user]
-	email = no-reply@olivando.me
+	email = 72449057+OlivandoGit@users.noreply.github.com
 	name = OlivandoGit
     
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[safe]
+	directory = /mnt/nas-storage/homelab
+	directory = /mnt/nas-storage/website
