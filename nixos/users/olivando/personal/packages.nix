@@ -22,7 +22,7 @@
         vscode
         qbittorrent
         prismlauncher
-	    itch
+        itch
 
         # CLI
         flavours
@@ -31,10 +31,18 @@
         terraform
         ansible
         veracrypt
+        yazi
 
         # Fonts
         nerd-fonts.symbols-only
         nerd-fonts.fira-code
         nerd-fonts.fira-mono
+
+	(pkgs.python311.withPackages (ppkgs:[
+		ppkgs.numpy
+		ppkgs.pandas
+		ppkgs.pdfquery
+	]))
+	
     ];
 }
