@@ -22,7 +22,7 @@
         vscode
         qbittorrent
         prismlauncher
-        itch
+#        itch
 
         # CLI
         flavours
@@ -41,7 +41,6 @@
 	(pkgs.python311.withPackages (ppkgs:[
 		ppkgs.numpy
 		ppkgs.pandas
-		ppkgs.pdfquery
 	]))
 	
     ];

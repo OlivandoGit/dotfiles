@@ -17,9 +17,10 @@
         bat
         zip
         unzip
-	    unrar
+	unrar
         vlc
         trash-cli
         htop
+	nmap
     ];
 }
