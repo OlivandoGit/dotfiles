@@ -42,7 +42,7 @@
                 }
                 {
                     mnt = "/mnt/docker-volumes";
-                    address = "truenas.home.olivando.me:/mnt/fast-storage/docker_volumes";
+                    address = "truenas.home.olivando.me:/mnt/fast-storage/docker-volumes";
                 }
             ];
         };
