@@ -63,4 +63,4 @@ Users.nix is used like a database to get user settings based on the username. Th
 
 ### TODO
 - [ ] Other network share types (smb)
-- [ x ] Add other vpn options (openvpn)
+- [x] Add other vpn options (openvpn)
