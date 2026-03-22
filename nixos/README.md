@@ -1,5 +1,5 @@
 # My Nixos configuration
-My configuration is built around the idea of having a centralised "control" file for the host settings and user settings - this files can be found in the root directory as "hosts.nix" and "users.nix" respectivly.
+My configuration is built around the idea of having a centralised "control" file for the host settings and user settings - this files can be found in the root directory as "hosts.nix" and "users.nix" respectively.
 
 Using these files, I can change the common config items for each host/user without having to drill down into the module files to do so. The module files are then built in such a way that there is a default generic config in case no config options are provided. (ie in case I want one PC to use dhcp instead of static addressing)
 
@@ -32,13 +32,16 @@ In the nixos directory of this repo
 Hosts.nix contains a list of attribute sets which each define a single host and its associated settings.
 
 ### Required hostSettings:
-- ```system```        System architecture, usually ```"x86_64-linux"```
-- ```users```         A list of attribute sets, defining each user and their profile type on this host
-- ```timezone```      Don't you want to know the correct time?
-- ```locale```        Don't you want to be able to type?
-- ```consoleKeymap``` Don't you want to be able to type on the console?
 
-### Optional hostSettigs:
+|  |  |
+| --- | --- |
+| ```system```        | System architecture, usually ```"x86_64-linux"```                                 |
+| ```users```         | A list of attribute sets, defining each user and their profile type on this host  |
+| ```timezone```      | Don't you want to know the correct time?                                          |
+| ```locale```        | Don't you want to be able to type?                                                |
+| ```consoleKeymap``` | Don't you want to be able to type on the console?                                 |
+
+### Optional hostSettings:
 - ```modules``` This is a list of config-less modules to import from the modules directory (See modules README for more info)
 
 - ```configModules``` This is an attribute set of modules that allow for additional configuration options
