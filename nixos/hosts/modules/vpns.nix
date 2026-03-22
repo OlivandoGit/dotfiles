@@ -20,12 +20,6 @@ let
             RestartSec = 5;
         };
     };
-
-    makeOpenvpn = {config}: {
-        inherit config;
-        autoStart = false;
-        updateResolvConf = false;
-    };
 in
 {
     systemd.services = builtins.foldl' (
@@ -34,12 +28,10 @@ in
         }
     ) {} (if wireguard then hostSettings.configModules.vpns.wireguard else []);
 
-    environment.systemPackages = [] ++ lib.optional wireguard pkgs.wireguard-tools;
+    services.openvpn.servers = (if openvpn then hostSettings.configModules.vpns.openvpn else {});
 
-    services.openvpn.servers = builtins.foldl' (
-        v: vpn: v // {
-            ${vpn.name} = makeOpenvpn { inherit (vpn) config; };
-        }
-    ) {} (if openvpn then hostSettings.configModules.vpns.openvpn else []);
+    environment.systemPackages = 
+        lib.optional wireguard pkgs.wireguard-tools
+        ++ lib.optional openvpn pkgs.openvpn;
 }
 

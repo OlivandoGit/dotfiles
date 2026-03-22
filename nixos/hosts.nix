@@ -51,16 +51,18 @@
             };
 
             vpns = {
-                openvpn = [
-                    {
-                        name = "fastvpn";
+                openvpn = {
+                    fastvpn = {
                         config = '' config /etc/nixos/secrets/openvpn/fastVPN.ovpn '';
-                    }
-                    {
-                        name = "outsideuk";
+                        autoStart = false;
+                        updateResolvConf = false;
+                    };
+                    outsideuk = {
                         config = '' config /etc/nixos/secrets/openvpn/outsideuk.ovpn'';
-                    }
-                ];
+                        autoStart = false;
+                        updateResolvConf = false;
+                    };
+                };
                 wireguard = [
                     "fastvpn"
                     "outsideuk"

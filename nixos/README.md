@@ -55,10 +55,12 @@ Hosts.nix contains a list of attribute sets which each define a single host and 
 
     - ```vpns```
         - ```wireguard``` A list of wireguard config files stored in /etc/wireguard to be turned into systemd services
+        - ```openvpn``` A attribute set defining each of the openvpn servers
+            - Everything inside of this attribute set is directly passed through to service.openvpn.server so the options are all the same
 
 ## Users.nix
 Users.nix is used like a database to get user settings based on the username. The options in this file are the same as users.users.\<username\> on NisOS and is directly imported during system configuration. This way I can make sure that users have the same settings across all systems (especially useful in the case of uid and nfs shares)
 
 ### TODO
 - [ ] Other network share types (smb)
-- [ ] Add other vpn options (openvpn)
+- [ x ] Add other vpn options (openvpn)
