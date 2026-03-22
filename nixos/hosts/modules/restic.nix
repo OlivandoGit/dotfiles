@@ -29,7 +29,6 @@
     };
 
     services.restic = {
-
         backups = {
             localbackup = {
                 initialize = true;

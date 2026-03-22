@@ -39,20 +39,23 @@ Hosts.nix contains a list of attribute sets which each define a single host and 
 - ```consoleKeymap``` Don't you want to be able to type on the console?
 
 ### Optional hostSettigs:
-- ```networking```
-    - ```ipv4``` Format: ```[ { interface [ { ipv4 CIDR } ] } ]``` \
-    A list of attribute sets, each defining a single network interface and the ip address address(es) for that interface
-    - ```defaultGateway``` Required if configuring static IP. Defines the default gateway address and the interface on which it can be reached 
-    - ```dns``` A list of ip addresses for DNS servers. Optional extra when configuring with static IP
+- ```modules``` This is a list of configless modules to import from the modules directory
 
-- ```shares```
-    - ```nfs``` A list of attribute sets, each defining a single network share
-        - ```mnt``` The directory to mount the nfs share to
-        - ```address``` The address of the network share
+- ```configModules``` This is an attribute set of modules that allow for additional configuration options
+
+    - ```networking``` This acts as a passthrough. The options available are the same as Nixos networking
+
+    - ```shares```
+        - ```nfs``` A list of attribute sets, each defining a single network share
+            - ```mnt``` The directory to mount the nfs share to
+            - ```address``` The address of the network share
+
+    - ```vpns```
+        - ```wireguard``` A list of wireguard config files stored in /etc/wireguard to be turned into systemd services
 
 ## Users.nix
 Users.nix is used like a database to get user settings based on the username. The options in this file are the same as users.users.\<username\> on NisOS and is directly imported during system configuration. This way I can make sure that users have the same settings across all systems (especially useful in the case of uid and nfs shares)
 
 ### TODO
-- [ ] Add dns settings for non-static IP configuration
-- [ ] Other network share types
+- [ ] Other network share types (smb)
+- [ ] Add other vpn options (openvpn)
