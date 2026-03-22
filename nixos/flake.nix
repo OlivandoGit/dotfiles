@@ -22,11 +22,11 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
                 
                 explicitModules = builtins.filter (name: builtins.elem name (hostSettings.modules or [])) discoveredModules;
                 implicitModules = builtins.filter (name: builtins.hasAttr name hostSettings) discoveredModules;
+                selectedModules = explicitModules ++ implicitModules;
 
-                modulePaths = map (name: "${moduleDir}/${name}.nix") (explicitModules ++ implicitModules);
+                modulePaths = map (name: "${moduleDir}/${name}.nix") selectedModules;
 
                 enabledModules = [
-                    ./hosts/common/configuration.nix
                     ./hosts/modules/default.nix
                     ./hosts/${hostname}/hardware-configuration.nix
                 ] ++ modulePaths;

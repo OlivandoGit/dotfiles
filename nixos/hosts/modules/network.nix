@@ -1,4 +1,4 @@
-{ nixpkgs, hostSettings, ... }:
+{ nixpkgs, hostname, hostSettings, ... }:
 let
     # Build a network interface from the function arguments
     makeInterface = { interface, addresses }: {
@@ -6,6 +6,9 @@ let
         ipv4.addresses = addresses;
         };
     };
+
+    networking.hostName = "${hostname}";
+
 
     makeNetworking = {
         # Build network interface options from provided list in hosts.nix
