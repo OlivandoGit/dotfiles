@@ -33,7 +33,7 @@ Hosts.nix contains a list of attribute sets which each define a single host and 
 
 ### Required hostSettings:
 
-|  |  |
+|  Name | Description  |
 | --- | --- |
 | ```system```        | System architecture, usually ```"x86_64-linux"```                                 |
 | ```users```         | A list of attribute sets, defining each user and their profile type on this host  |
