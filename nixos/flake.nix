@@ -14,15 +14,33 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
         userSettings = import ./users.nix;
 
         # Make specified system from passed arguments
-        makeSystem = { hostname, hostSettings }: nixpkgs.lib.nixosSystem {
-            system = hostSettings.system;
+        makeSystem = { hostname, hostSettings }: 
+            let
+                moduleDir = ./hosts/modules;
+                discoveredFiles = builtins.attrNames (builtins.readDir moduleDir);
+                discoveredModules = map (file: builtins.replaceStrings [".nix"] [""] file) discoveredFiles;
+                
+                explicitModules = builtins.filter (name: builtins.elem name (hostSettings.modules or [])) discoveredModules;
+                implicitModules = builtins.filter (name: builtins.hasAttr name hostSettings) discoveredModules;
 
-            specialArgs = {
-                inherit hostSettings userSettings;
-            };
+                modulePaths = map (name: "${moduleDir}/${name}.nix") (explicitModules ++ implicitModules);
 
-            modules = [ ./hosts/${hostname}/configuration.nix ];
-        };
+                enabledModules = [
+                    ./hosts/common/configuration.nix
+                    ./hosts/modules/default.nix
+                    ./hosts/${hostname}/hardware-configuration.nix
+                ] ++ modulePaths;
+
+            in
+                nixpkgs.lib.nixosSystem {
+                    system = hostSettings.system;
+
+                    specialArgs = {
+                        inherit hostname hostSettings userSettings;
+                    };
+
+                    modules = enabledModules;
+                };
 
         # Make homeConfiguration for each user on each host in host.nix
         makeHomeConfigs = host: nixpkgs.lib.foldl' (

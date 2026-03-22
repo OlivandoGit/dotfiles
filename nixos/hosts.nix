@@ -10,11 +10,7 @@
         locale = "en_GB.UTF-8";
         consoleKeymap = "uk";
 
-        nvidia = true;
-        bluetooth = true;
-        restic = true;
-        printing = true;
-        comfyui = true;
+        modules = ["nvidia" "bluetooth" "restic" "printing" "hyprland" "docker" "steam" "comfyui" "ollama"];
 
         networking = {
             ipv4 = [
@@ -54,19 +50,19 @@
         };
 
         vpns = {
-            openvpn = [
-                {
-                    name = "fastvpn";
-                    config = '' config /etc/nixos/secrets/openvpn/fastVPN.ovpn '';
-                }
-                {
-                    name = "outsideuk";
-                    config = '' config /etc/nixos/secrets/openvpn/outsideuk.ovpn'';
-                }
-            ];
-
+            # openvpn = [
+            #     {
+            #         name = "fastvpn";
+            #         config = '' config /etc/nixos/secrets/openvpn/fastVPN.ovpn '';
+            #     }
+            #     {
+            #         name = "outsideuk";
+            #         config = '' config /etc/nixos/secrets/openvpn/outsideuk.ovpn'';
+            #     }
+            # ];
             wireguard = [
                 "fastvpn"
+                "outsideuk"
             ];
 
         };
