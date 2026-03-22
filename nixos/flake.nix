@@ -48,7 +48,7 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
                 modulePaths = map (name: "${moduleDir}/${name}.nix") selectedModules;
 
                 enabledModules = [
-                    ./hosts/modules/default.nix
+                    ./hosts/modules/system.nix
                     ./hosts/${hostname}/hardware-configuration.nix
                 ] ++ modulePaths;
 

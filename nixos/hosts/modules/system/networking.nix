@@ -9,7 +9,6 @@ let
 
     networking.hostName = "${hostname}";
 
-
     makeNetworking = {
         # Build network interface options from provided list in hosts.nix
         interfaces = builtins.foldl' (
