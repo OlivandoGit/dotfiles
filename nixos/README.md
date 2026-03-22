@@ -39,7 +39,7 @@ Hosts.nix contains a list of attribute sets which each define a single host and 
 - ```consoleKeymap``` Don't you want to be able to type on the console?
 
 ### Optional hostSettigs:
-- ```modules``` This is a list of configless modules to import from the modules directory
+- ```modules``` This is a list of config-less modules to import from the modules directory (See modules README for more info)
 
 - ```configModules``` This is an attribute set of modules that allow for additional configuration options
 
