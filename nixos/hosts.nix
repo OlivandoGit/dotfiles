@@ -10,6 +10,12 @@
         locale = "en_GB.UTF-8";
         consoleKeymap = "uk";
 
+        nvidia = true;
+        bluetooth = true;
+        restic = true;
+        printing = true;
+        comfyui = true;
+
         networking = {
             ipv4 = [
             {
@@ -45,6 +51,24 @@
                     address = "truenas.home.olivando.me:/mnt/fast-storage/docker-volumes";
                 }
             ];
+        };
+
+        vpns = {
+            openvpn = [
+                {
+                    name = "fastvpn";
+                    config = '' config /etc/nixos/secrets/openvpn/fastVPN.ovpn '';
+                }
+                {
+                    name = "outsideuk";
+                    config = '' config /etc/nixos/secrets/openvpn/outsideuk.ovpn'';
+                }
+            ];
+
+            wireguard = [
+                "fastvpn"
+            ];
+
         };
     };
 }

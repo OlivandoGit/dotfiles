@@ -12,7 +12,6 @@
         neofetch
         bind
         fzf
-        thefuck
         tldr
         bat
         zip
@@ -21,6 +20,7 @@
         vlc
         trash-cli
         htop
+	nvtopPackages.nvidia
 	nmap
     ];
 }

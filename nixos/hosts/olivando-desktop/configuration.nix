@@ -1,4 +1,5 @@
 {hostSettings, ...}:
+ 
 {
     imports = [
         ./hardware-configuration.nix
@@ -13,12 +14,15 @@
 
         ../modules/printing.nix
         ../modules/bluetooth.nix
-        ../modules/openvpn.nix
-    ] ++ (if (builtins.hasAttr "shares" hostSettings) then [ ../modules/shares.nix ] else []);
+        
+    ] 
+    ++ (if (builtins.hasAttr "shares" hostSettings) then [ ../modules/shares.nix ] else [])
+    ++ (if (builtins.hasAttr "vpns" hostSettings) then [ ../modules/vpns.nix ] else []);
 
     networking.hostName = "olivando-desktop";
 
     system.stateVersion = "25.05"; # DO NOT CHANGE
+
 }
 
 

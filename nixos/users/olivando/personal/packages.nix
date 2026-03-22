@@ -10,19 +10,19 @@
         mako
         libnotify
         hyprpaper
-        rofi-wayland
+        rofi
         hyprlock
         hyprshot
 
         # UI apps
         discord
         youtube-music
-        bitwarden
+        bitwarden-desktop
         stow
         vscode
         qbittorrent
         prismlauncher
-#        itch
+        itch
 
         # CLI
         flavours
