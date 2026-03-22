@@ -21,7 +21,7 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
                 discoveredModules = map (file: builtins.replaceStrings [".nix"] [""] file) discoveredFiles;
                 
                 explicitModules = builtins.filter (name: builtins.elem name (hostSettings.modules or [])) discoveredModules;
-                implicitModules = builtins.filter (name: builtins.hasAttr name hostSettings) discoveredModules;
+                implicitModules = builtins.filter (name: builtins.hasAttr name hostSettings.configModules or {}) discoveredModules;
                 selectedModules = explicitModules ++ implicitModules;
 
                 modulePaths = map (name: "${moduleDir}/${name}.nix") selectedModules;

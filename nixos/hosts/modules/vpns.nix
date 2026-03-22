@@ -1,7 +1,7 @@
 { pkgs, hostSettings, lib,  ... }:
 
 let 
-    wireguard = (if builtins.hasAttr "wireguard" hostSettings.vpns then true else false);
+    wireguard = (if builtins.hasAttr "wireguard" hostSettings.configModules.vpns then true else false);
 
     makewireguard = {vpn}: {
         description = "Manual WireGuard VPN (${vpn})";
@@ -22,7 +22,7 @@ in
         v: vpn: v // {
             "wireguard-${vpn}" = makewireguard { inherit vpn; };
         }
-    ) {} (if wireguard then hostSettings.vpns.wireguard else []);
+    ) {} (if wireguard then hostSettings.configModules.vpns.wireguard else []);
 
     environment.systemPackages = [] ++ lib.optional wireguard pkgs.wireguard-tools;
 }

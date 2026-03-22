@@ -1,9 +1,9 @@
 {
     imports = [
         ./bootloader.nix
-        ./local.nix
+        ./locale.nix
         ./nix.nix
         ./users.nix
-        ./network.nix
+        ./networking.nix
     ];
 }

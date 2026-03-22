@@ -3,14 +3,13 @@
     hostname = "olivando-desktop";
     
     hostSettings = {
+        # ==== Required ====
         users = [ {username = "olivando"; profile = "personal";} ];
 
         system = "x86_64-linux";
         timezone = "Europe/London";
         locale = "en_GB.UTF-8";
         consoleKeymap = "uk";
-
-        modules = ["nvidia" "bluetooth" "restic" "printing" "hyprland" "docker" "steam" "comfyui" "ollama"];
 
         networking = {
             ipv4 = [
@@ -32,40 +31,47 @@
             ];
         };
 
-        shares = {
-            nfs = [ 
-                {
-                    mnt = "/mnt/nas-storage";
-                    address = "truenas.home.olivando.me:/mnt/fast-storage/nas-storage";
-                }
-                {
-                    mnt = "/mnt/backups";
-                    address = "truenas.home.olivando.me:/mnt/fast-storage/backups";
-                }
-                {
-                    mnt = "/mnt/docker-volumes";
-                    address = "truenas.home.olivando.me:/mnt/fast-storage/docker-volumes";
-                }
-            ];
-        };
+        # ==== Extra modules ====
+        modules = ["nvidia" "bluetooth" "restic" "printing" "hyprland" "docker" "steam" "comfyui" "ollama"];
 
-        vpns = {
-            # openvpn = [
-            #     {
-            #         name = "fastvpn";
-            #         config = '' config /etc/nixos/secrets/openvpn/fastVPN.ovpn '';
-            #     }
-            #     {
-            #         name = "outsideuk";
-            #         config = '' config /etc/nixos/secrets/openvpn/outsideuk.ovpn'';
-            #     }
-            # ];
-            wireguard = [
-                "fastvpn"
-                "outsideuk"
-            ];
+        # ==== Modules with configurations ====
+        configModules = {
+            shares = {
+                nfs = [ 
+                    {
+                        mnt = "/mnt/nas-storage";
+                        address = "truenas.home.olivando.me:/mnt/fast-storage/nas-storage";
+                    }
+                    {
+                        mnt = "/mnt/backups";
+                        address = "truenas.home.olivando.me:/mnt/fast-storage/backups";
+                    }
+                    {
+                        mnt = "/mnt/docker-volumes";
+                        address = "truenas.home.olivando.me:/mnt/fast-storage/docker-volumes";
+                    }
+                ];
+            };
 
+            vpns = {
+                # openvpn = [
+                #     {
+                #         name = "fastvpn";
+                #         config = '' config /etc/nixos/secrets/openvpn/fastVPN.ovpn '';
+                #     }
+                #     {
+                #         name = "outsideuk";
+                #         config = '' config /etc/nixos/secrets/openvpn/outsideuk.ovpn'';
+                #     }
+                # ];
+                wireguard = [
+                    "fastvpn"
+                    "outsideuk"
+                ];
+
+            };
         };
+        
     };
 }
 ]
