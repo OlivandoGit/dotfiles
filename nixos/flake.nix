@@ -17,12 +17,33 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
         makeSystem = { hostname, hostSettings }: 
             let
                 moduleDir = ./hosts/modules;
-                discoveredFiles = builtins.attrNames (builtins.readDir moduleDir);
-                discoveredModules = map (file: builtins.replaceStrings [".nix"] [""] file) discoveredFiles;
+                discoveredModules = map (file: builtins.replaceStrings [".nix"] [""] file) (builtins.attrNames (builtins.readDir moduleDir));
                 
-                explicitModules = builtins.filter (name: builtins.elem name (hostSettings.modules or [])) discoveredModules;
-                implicitModules = builtins.filter (name: builtins.hasAttr name hostSettings.configModules or {}) discoveredModules;
-                selectedModules = explicitModules ++ implicitModules;
+                explicitModuleNames = hostSettings.modules or [];
+
+                # Throw error for unknown explicit modules
+                unknownExplicitModules = builtins.filter(name: !(builtins.elem name discoveredModules)) explicitModuleNames;
+                _1 = if unknownExplicitModules != [] then
+                        builtins.throw ''
+                            Unknown explicit modules: ${builtins.concatStringsSep ", " unknownExplicitModules}
+                            Available modules: ${builtins.concatStringsSep ", " discoveredModules}
+                        ''
+                    else null;
+                
+                configModulesNames = builtins.attrNames (hostSettings.configModules or {});
+
+                # Throw error for unknown config modules
+                unknownConfigModules = builtins.filter(name: !(builtins.elem name discoveredModules)) configModulesNames;
+                _2 = if unknownConfigModules != [] then
+                        builtins.throw ''
+                            Unknown explicit modules: ${builtins.concatStringsSep ", " unknownConfigModules}
+                            Available modules: ${builtins.concatStringsSep ", " discoveredModules}
+                        ''
+                    else null;
+
+                explicitModules = builtins.filter (name: builtins.elem name explicitModuleNames) discoveredModules;
+                configModules = builtins.filter (name: builtins.elem name configModulesNames) discoveredModules;
+                selectedModules = explicitModules ++ configModules;
 
                 modulePaths = map (name: "${moduleDir}/${name}.nix") selectedModules;
 
@@ -32,6 +53,9 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
                 ] ++ modulePaths;
 
             in
+                # Evaluate the errors
+                assert _1 == null && _2 == null;
+
                 nixpkgs.lib.nixosSystem {
                     system = hostSettings.system;
 
