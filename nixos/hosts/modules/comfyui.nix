@@ -12,49 +12,56 @@ let
   port = 8188;
 
 in
-{
-  options.services.comfyui.enable = lib.mkEnableOption "Enable ComfyUI";
+{    
 
-  config = lib.mkIf config.services.comfyui.enable {
+  users.users.comfyui = {
+    isSystemUser = true;
+    uid = 5001;
+    group = "comfyui";
+    home = dataDir;
+  };
 
-    system.activationScripts.comfyui-setup.text = ''
-      mkdir -p ${dataDir}
-      cp -rn ${comfySrc}/* ${dataDir}/
+  users.groups.comfyui = {};
 
-      mkdir -p ${dataDir}/models
-      mkdir -p ${dataDir}/input
-      mkdir -p ${dataDir}/output
-      mkdir -p ${dataDir}/custom_nodes
+  system.activationScripts.comfyui-setup.text = ''
+    mkdir -p ${dataDir}
 
-      if [ ! -d ${dataDir}/venv ]; then
-        ${python}/bin/python -m venv ${dataDir}/venv
-        ${dataDir}/venv/bin/pip install --upgrade pip
+    cp -rn ${comfySrc}/* ${dataDir}/
 
-        # CUDA-enabled PyTorch (cu121) for your 4070 Ti
-        ${dataDir}/venv/bin/pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+    if [ ! -d ${dataDir}/venv ]; then
+      ${python}/bin/python -m venv ${dataDir}/venv
+      ${dataDir}/venv/bin/pip install --upgrade pip
 
-        # ComfyUI dependencies
-        ${dataDir}/venv/bin/pip install -r ${dataDir}/requirements.txt
-      fi
-    '';
+      # CUDA-enabled PyTorch (cu121) for your 4070 Ti
+      ${dataDir}/venv/bin/pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 
-    systemd.services.comfyui = {
-      description = "ComfyUI Service";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
+      # ComfyUI dependencies
+      ${dataDir}/venv/bin/pip install -r ${dataDir}/requirements.txt
+    fi
 
-      serviceConfig = {
-        WorkingDirectory = dataDir;
-        ExecStart = "${dataDir}/venv/bin/python ${dataDir}/main.py --listen 0.0.0.0 --port ${toString port}";
-        Restart = "always";
-        RestartSec = "5s";
+    chown -R comfyui:comfyui ${dataDir}
+  '';
 
-        Environment = [
-          "PYTHONUNBUFFERED=1"
-          # Expose NVIDIA driver + C++ runtime to PyTorch
-          "LD_LIBRARY_PATH=${config.hardware.nvidia.package}/lib:${pkgs.stdenv.cc.cc.lib}/lib"
-        ];
-      };
+  systemd.services.comfyui = {
+    description = "ComfyUI Service";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      StateDirectory = "comfyui";
+      WorkingDirectory = dataDir;
+      ExecStart = "${dataDir}/venv/bin/python ${dataDir}/main.py --listen 0.0.0.0 --port ${toString port}";
+      Restart = "always";
+      RestartSec = "5s";
+
+      User = "comfyui";
+      Group = "comfyui";
+
+      Environment = [
+        "PYTHONUNBUFFERED=1"
+        # Expose NVIDIA driver + C++ runtime to PyTorch
+        "LD_LIBRARY_PATH=${config.hardware.nvidia.package}/lib:${pkgs.stdenv.cc.cc.lib}/lib"
+      ];
     };
   };
 }

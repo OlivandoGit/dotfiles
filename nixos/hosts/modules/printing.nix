@@ -2,7 +2,7 @@
     # Enable cups
     services.printing.enable = true;
 
-    # Network discorvery
+    # Network discovery
     services.avahi = {
         enable = true;
         nssmdns4 = true;

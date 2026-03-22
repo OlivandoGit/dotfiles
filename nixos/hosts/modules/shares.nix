@@ -1,7 +1,7 @@
 { pkgs, hostSettings, ...  }:
 
 let 
-    nfsShares = (if builtins.hasAttr "nfs" hostSettings.configModules.shares then true else false);
+    nfsShares = hostSettings.configModules.shares ? nfs;
 
     makeShare = {address, type}: {
         device = "${address}";

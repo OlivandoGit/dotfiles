@@ -1,7 +1,7 @@
 { pkgs, hostSettings, lib,  ... }:
 
 let 
-    wireguard = (if builtins.hasAttr "wireguard" hostSettings.configModules.vpns then true else false);
+    wireguard = hostSettings.configModules.vpns ? wireguard;
 
     makewireguard = {vpn}: {
         description = "Manual WireGuard VPN (${vpn})";
@@ -14,6 +14,9 @@ let
             ExecStart = "/run/current-system/sw/bin/wg-quick up ${vpn}";
             ExecStop = "/run/current-system/sw/bin/wg-quick down ${vpn}";
             RemainAfterExit = true;
+
+            Restart= "on-failure";
+            RestartSec = 5;
         };
     };
 in

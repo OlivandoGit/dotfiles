@@ -2,7 +2,7 @@
     olivando = {       
         isNormalUser = true;
 
-        extraGroups = ["wheel" "networkmanager" "docker"];
+        extraGroups = ["wheel" "networkmanager" "docker" "comfyui"];
         
         uid = 1000;
 

@@ -46,7 +46,7 @@
                     
                     # Exclude everything in ssh except the config file
                     "/home/*/.ssh/*"
-                    "!/home/*/config"
+                    "!/home/*/.ssh/config"
                 ];
 
                 # inhibitsSleep = true;
