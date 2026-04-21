@@ -45,7 +45,7 @@ in
   systemd.services.comfyui = {
     description = "ComfyUI Service";
     after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+#    wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
       StateDirectory = "comfyui";

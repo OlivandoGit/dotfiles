@@ -12,7 +12,7 @@
         consoleKeymap = "uk";
 
         # ==== Extra modules ====
-        modules = ["nvidia" "bluetooth" "restic" "printing" "hyprland" "docker" "steam" "comfyui" "ollama" "ssh"];
+        modules = ["nvidia" "bluetooth" "restic" "printing" "hyprland" "docker" "steam" "comfyui" "ollama" "ssh" "packettracer"];
 
         # ==== Modules with configurations ====
         configModules = {
@@ -65,7 +65,7 @@
                 };
                 wireguard = [
                     "fastvpn"
-                    "outsideuk"
+                    "outsideukvpn"
                 ];
             };
         };

@@ -22,5 +22,6 @@
         htop
 	nvtopPackages.nvidia
 	nmap
+        tcpdump
     ];
 }

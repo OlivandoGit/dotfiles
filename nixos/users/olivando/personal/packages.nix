@@ -23,6 +23,8 @@
         qbittorrent
         prismlauncher
         itch
+	    mangohud
+	    anki
 
         # CLI
         flavours

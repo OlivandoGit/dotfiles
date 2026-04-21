@@ -2,13 +2,14 @@
 inputs = {
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
 };
 
-outputs = { self, nixpkgs, home-manager, ... } @inputs:
+outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @inputs:
     let
         hosts = import ./hosts.nix;
         userSettings = import ./users.nix;
@@ -16,6 +17,9 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
         # Make specified system from passed arguments
         makeSystem = { hostname, hostSettings }: 
             let
+
+                unstable = import nixpkgs-unstable {inherit (hostSettings) system; config.allowUnfree = true; };
+
                 moduleDir = ./hosts/modules;
                 discoveredModules = builtins.filter (name: builtins.match ".*\\.nix" name != null) (builtins.attrNames (builtins.readDir moduleDir));
                 availableModuleNames = map (name: nixpkgs.lib.removeSuffix ".nix" name) discoveredModules;
@@ -61,7 +65,7 @@ outputs = { self, nixpkgs, home-manager, ... } @inputs:
                     system = hostSettings.system;
 
                     specialArgs = {
-                        inherit hostname hostSettings;
+                        inherit hostname hostSettings unstable;
 
                         # Limit usersettings to only the users for this host
                         userSettings = builtins.listToAttrs (map (u: {
